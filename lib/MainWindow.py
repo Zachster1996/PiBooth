@@ -38,6 +38,10 @@ class MainWindow(QtGui.QWidget):
 			elif event.key() == QtCore.Qt.Key_Down:
 				self.ui.countdown_time.setValue(self.ui.countdown_time.value() - 1)
 
+	def closeEvent(self, event):
+		""" Prevent close (This blocks Alt-F4!!!) """
+		event.ignore()
+
 	def reset_ui():
 		""" Reset all of the UI elements to default values """
 		pass # TODO: reset_ui
