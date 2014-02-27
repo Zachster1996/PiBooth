@@ -44,7 +44,7 @@ class MainWindow(QtGui.QWidget):
 		# We always want to check for the correct view index.
 		if self.ui.view.currentIndex() == 2: 
 			print "toggle_preview enable"
-		else 
+		else: 
 			print "toggle_preview disable"
 
 	def closeEvent(self, event):
