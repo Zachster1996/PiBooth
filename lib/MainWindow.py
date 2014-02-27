@@ -5,7 +5,6 @@ PiBooth Main GUI
 """
 
 from PyQt4 import QtCore, QtGui, uic
-import subprocess
 
 
 class MainWindow(QtGui.QWidget):
@@ -43,25 +42,15 @@ class MainWindow(QtGui.QWidget):
 	def toggle_preview(self):
 		""" Toggle preview window. """
 		# We always want to check for the correct view index.
-		if self.ui.view.currentIndex() == 0: # TODO: Get preview index
-			pass
-		else self.ui.view.currentIndex() == -1 or self.ui.view.currentIndex() == 1: # TODO: Get preview index
-			pass
+		if self.ui.view.currentIndex() == 2: # TODO: Get preview index
+			print "toggle_preview enable"
+		else self.ui.view.currentIndex() == 1 or self.ui.view.currentIndex() == 3: # TODO: Get preview index
+			print "toggle_preview disable"
 
 	def closeEvent(self, event):
 		""" Prevent close (This blocks Alt-F4!!!) """
 		event.ignore()
 
-	def reset_ui(self):
+	def reset_ui():
 		""" Reset all of the UI elements to default values """
 		pass # TODO: reset_ui
-
-	def _get_preview_handle(self):
-		# TODO: Add the geometry settings to raspistill call
-		x = self.mapToGlobal(ui.frame.pos).x()
-		y = self.mapToGlobal(ui.frame.pos).y()
-		width = ui.frame.size.x()
-		height = ui.frame.size.y() 
-		return Popen("raspistill", shell=True)
-
-
