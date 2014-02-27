@@ -240,7 +240,11 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="countdown_time"/>
+          <widget class="QSpinBox" name="countdown_time">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </propery>
+          </widget>
          </item>
         </layout>
        </item>
