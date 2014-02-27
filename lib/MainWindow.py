@@ -5,6 +5,7 @@ PiBooth Main GUI
 """
 
 from PyQt4 import QtCore, QtGui, uic
+import subprocess
 
 
 class MainWindow(QtGui.QWidget):
@@ -20,9 +21,11 @@ class MainWindow(QtGui.QWidget):
 		if self.view_locked == False:
 			if event.key() == QtCore.Qt.Key_Enter or event.key() == QtCore.Qt.Key_Return:
 				self.ui.view.setCurrentIndex(self.ui.view.currentIndex() + 1)
+				self.toggle_preview()
 
 			elif event.key() == QtCore.Qt.Key_Backspace:
 				self.ui.view.setCurrentIndex(self.ui.view.currentIndex() - 1)
+				self.toggle_preview()
 
 			elif event.key() == QtCore.Qt.Key_B:
 				# TODO: Fix focus issues 
@@ -37,11 +40,28 @@ class MainWindow(QtGui.QWidget):
 
 			elif event.key() == QtCore.Qt.Key_Down:
 				self.ui.countdown_time.setValue(self.ui.countdown_time.value() - 1)
+	def toggle_preview(self):
+		""" Toggle preview window. """
+		# We always want to check for the correct view index.
+		if self.ui.view.currentIndex() == 0: # TODO: Get preview index
+			pass
+		else self.ui.view.currentIndex() == -1 or self.ui.view.currentIndex() == 1: # TODO: Get preview index
+			pass
 
 	def closeEvent(self, event):
 		""" Prevent close (This blocks Alt-F4!!!) """
 		event.ignore()
 
-	def reset_ui():
+	def reset_ui(self):
 		""" Reset all of the UI elements to default values """
 		pass # TODO: reset_ui
+
+	def _get_preview_handle(self):
+		# TODO: Add the geometry settings to raspistill call
+		x = self.mapToGlobal(ui.frame.pos).x()
+		y = self.mapToGlobal(ui.frame.pos).y()
+		width = ui.frame.size.x()
+		height = ui.frame.size.y() 
+		return Popen("raspistill", shell=True)
+
+
